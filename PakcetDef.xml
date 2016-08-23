@@ -1,0 +1,6 @@
+<Packet>
+	<Field offset="0" size="16" type="fixData"/>
+	<Field offset="17" size="5" type="enum">
+		
+	</Field>
+</Packet>

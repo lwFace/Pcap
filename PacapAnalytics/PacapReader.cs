@@ -50,16 +50,16 @@ namespace PacapAnalytics
                         PacapData pData = null; 
                         switch ((ProtocolType)header->ProtocolType)
                         {
-                            case ProtocolType.TCP:
-                                pData = new TcpData(); 
-                                break;
+                            //case ProtocolType.TCP:
+                            //    pData = new TcpData(); 
+                            //    break;
                             case ProtocolType.UDP:
                                 pData = new UdpData(); 
                                 break;
                         }
                         if (pData != null)
                         {
-                            int offset = sizeof(EthernetHeader) + pData.HeaderLen;
+                            int offset = 0;// sizeof(EthernetHeader) + pData.HeaderLen;
                             pData.IPHeader = *header;
                             pData.EthernetHeader = *etherHeader;
                             pData.PacketHeader = *pktHeader;

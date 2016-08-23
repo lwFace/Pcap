@@ -7,7 +7,7 @@ using System.Collections.Specialized;
 
 namespace PacapAnalytics
 {
-    class Program
+   /* class Program
     {
         static void Main(string[] args)
         {
@@ -32,5 +32,5 @@ namespace PacapAnalytics
                 }
             }
         }
-    }
+    }*/
 }
