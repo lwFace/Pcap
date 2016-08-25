@@ -190,7 +190,7 @@
             this.treeListPac.OptionsView.ShowHorzLines = false;
             this.treeListPac.OptionsView.ShowIndicator = false;
             this.treeListPac.OptionsView.ShowVertLines = false;
-            this.treeListPac.Size = new System.Drawing.Size(527, 121);
+            this.treeListPac.Size = new System.Drawing.Size(527, 168);
             this.treeListPac.TabIndex = 7;
             this.treeListPac.Click += new System.EventHandler(this.treeListPac_Click);
             // 
@@ -205,7 +205,7 @@
             // splitterControl2
             // 
             this.splitterControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl2.Location = new System.Drawing.Point(0, 313);
+            this.splitterControl2.Location = new System.Drawing.Point(0, 360);
             this.splitterControl2.Name = "splitterControl2";
             this.splitterControl2.Size = new System.Drawing.Size(527, 5);
             this.splitterControl2.TabIndex = 8;
@@ -218,14 +218,14 @@
             this.hexBoxPac.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hexBoxPac.HeaderColor = System.Drawing.Color.Maroon;
             this.hexBoxPac.LineInfoVisible = true;
-            this.hexBoxPac.Location = new System.Drawing.Point(0, 318);
+            this.hexBoxPac.Location = new System.Drawing.Point(0, 365);
             this.hexBoxPac.Name = "hexBoxPac";
             this.hexBoxPac.ReadOnly = true;
             this.hexBoxPac.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
             this.hexBoxPac.SelectionLength = ((long)(0));
             this.hexBoxPac.SelectionStart = ((long)(-1));
             this.hexBoxPac.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBoxPac.Size = new System.Drawing.Size(527, 88);
+            this.hexBoxPac.Size = new System.Drawing.Size(527, 41);
             this.hexBoxPac.StringViewVisible = true;
             this.hexBoxPac.TabIndex = 9;
             this.hexBoxPac.UseFixedBytesPerLine = true;
@@ -247,6 +247,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "FrmMain";
             this.Text = "FrmMain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPac)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPac)).EndInit();

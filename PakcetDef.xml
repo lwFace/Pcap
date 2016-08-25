@@ -1,6 +1,21 @@
 <Packet>
-	<Field offset="0" size="16" type="fixData"/>
-	<Field offset="17" size="5" type="enum">
-		
-	</Field>
+	<Block name="消息包头" offset="0" length="4">
+		<Field name="数据长度" offset="0" length="13" type="fixData"/>
+		<Field name="保留" offset="13" length="7" type="fixData"/>
+		<Field name="OpCode" offset="20" length="6" type="enum">
+				<Item name="中断" value="6"/>
+				<Item name="写寄存器" value="8"/>
+				<Item name="读寄存器" value="10"/>
+				<Item name="读REG响应" value="11"/>
+				<Item name="写MEM" value="12"/>
+				<Item name="读MEM" value="13"/>
+				<Item name="读MEM响应" value="14"/>
+		</Field>
+		<Field name="类型" offset="26" length="6" type="fixData"/>
+	</Block>
+	<Block name="地址信息" offset="4" length="4">
+		<Field name="偏移地址" offset="0" length="16" type="fixData"/>
+		<Field name="端口号" offset="16" length="5" type="fixData"/>
+		<Field name="板卡地址" offset="21" length="3" type="fixData"/>
+	</Block>
 </Packet>

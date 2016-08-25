@@ -11,16 +11,20 @@ using PacapAnalytics;
 using Be.Windows.Forms;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
+using UnPack;
 
 namespace RDCHelper
 {
     public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
         BindingList<BoundPacket> packetList = new BindingList<BoundPacket>();
+        Packet RDCPacket;
         public FrmMain()
         {
             InitializeComponent();
             this.gridControlPac.DataSource = packetList;
+            RDCPacket = new Packet(@"E:\Workspace\GitHub\Pcap\PakcetDef.xml");
+            gridViewPac.Columns["Tag"].Visible = false;
         }
 
         private void menuOpen_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -82,6 +86,27 @@ namespace RDCHelper
             TreeListNode DataNode = treeList.AppendNode(new object[] { string.Format("Payload ({0} bytes)", payloadLen )}, -1);
             PacSelector DataSel = new PacSelector(42, payloadLen);
             DataNode.Tag = DataSel;
+            RDCPacket.Parse(packet.Data, 42,packet.Data.Length-42);
+            foreach (var block in RDCPacket.GetBlocks())
+            {
+                TreeListNode bNode = DataNode.Nodes.Add(new object[] { block.ToString() });
+                PacSelector bSel = new PacSelector(42 + block.Offset, block.Length);
+                bNode.Tag = bSel;
+                foreach (var field in block.GetFields())
+                {
+                    int fOffset = block.Offset + field.Offset / 8;
+                    int fLen =  field.Length / 8;
+                    if (field.Length % 8 != 0)
+                    {
+                        fLen = field.Length / 8 + 1;
+                    }
+                   
+                    TreeListNode fNode = bNode.Nodes.Add(new object[] { field.ToString() });
+                    PacSelector fSel = new PacSelector(42 + fOffset, fLen);
+                    fNode.Tag = fSel;
+                }              
+            }
+            DataNode.ExpandAll();
         }
 
         private void ParseInternetProtocal(TreeList treeList, PacapData packet)
