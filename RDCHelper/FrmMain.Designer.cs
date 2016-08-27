@@ -47,19 +47,27 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.treeListPac = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.hexBoxPac = new Be.Windows.Forms.HexBox();
             this.barBtnLoadAnalysis = new DevExpress.XtraBars.BarButtonItem();
             this.gridControlPac = new DevExpress.XtraGrid.GridControl();
             this.gridViewPac = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
-            this.treeListPac = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.hexBoxPac = new Be.Windows.Forms.HexBox();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.splitterControl2 = new DevExpress.XtraEditors.SplitterControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
+            this.dockPanel1.SuspendLayout();
+            this.dockPanel1_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListPac)).BeginInit();
+            this.dockPanel2.SuspendLayout();
+            this.dockPanel2_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPac)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPac)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListPac)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -74,6 +82,7 @@
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
             this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.DockManager = this.dockManager1;
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barSubItem1,
@@ -186,6 +195,7 @@
             this.barButtonVersion.Id = 6;
             this.barButtonVersion.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonVersion.LargeGlyph")));
             this.barButtonVersion.Name = "barButtonVersion";
+            this.barButtonVersion.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonVersion_ItemClick);
             // 
             // barButtonHelp
             // 
@@ -193,6 +203,7 @@
             this.barButtonHelp.Id = 7;
             this.barButtonHelp.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonHelp.LargeGlyph")));
             this.barButtonHelp.Name = "barButtonHelp";
+            this.barButtonHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonHelp_ItemClick);
             // 
             // bar3
             // 
@@ -211,72 +222,73 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(527, 54);
+            this.barDockControlTop.Size = new System.Drawing.Size(527, 55);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 489);
-            this.barDockControlBottom.Size = new System.Drawing.Size(527, 22);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 490);
+            this.barDockControlBottom.Size = new System.Drawing.Size(527, 21);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 55);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 435);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(527, 54);
+            this.barDockControlRight.Location = new System.Drawing.Point(527, 55);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 435);
             // 
-            // barBtnLoadAnalysis
+            // dockManager1
             // 
-            this.barBtnLoadAnalysis.Caption = "载入解析规则";
-            this.barBtnLoadAnalysis.Id = 4;
-            this.barBtnLoadAnalysis.Name = "barBtnLoadAnalysis";
+            this.dockManager1.Form = this;
+            this.dockManager1.MenuManager = this.barManager1;
+            this.dockManager1.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.dockPanel1,
+            this.dockPanel2});
+            this.dockManager1.TopZIndexControls.AddRange(new string[] {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.StatusBar",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
+            "DevExpress.XtraBars.Navigation.TileNavPane"});
             // 
-            // gridControlPac
+            // dockPanel1
             // 
-            this.gridControlPac.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gridControlPac.Location = new System.Drawing.Point(0, 54);
-            this.gridControlPac.MainView = this.gridViewPac;
-            this.gridControlPac.MenuManager = this.barManager1;
-            this.gridControlPac.Name = "gridControlPac";
-            this.gridControlPac.Size = new System.Drawing.Size(527, 134);
-            this.gridControlPac.TabIndex = 4;
-            this.gridControlPac.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewPac});
+            this.dockPanel1.Controls.Add(this.dockPanel1_Container);
+            this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
+            this.dockPanel1.ID = new System.Guid("31377b1a-aebd-46ad-9f5c-c3032663b048");
+            this.dockPanel1.Image = ((System.Drawing.Image)(resources.GetObject("dockPanel1.Image")));
+            this.dockPanel1.Location = new System.Drawing.Point(346, 55);
+            this.dockPanel1.Name = "dockPanel1";
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(181, 200);
+            this.dockPanel1.Size = new System.Drawing.Size(181, 435);
+            this.dockPanel1.Text = "报文解析";
             // 
-            // gridViewPac
+            // dockPanel1_Container
             // 
-            this.gridViewPac.GridControl = this.gridControlPac;
-            this.gridViewPac.Name = "gridViewPac";
-            this.gridViewPac.OptionsBehavior.Editable = false;
-            this.gridViewPac.OptionsBehavior.ReadOnly = true;
-            this.gridViewPac.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewPac.OptionsView.ShowGroupPanel = false;
-            this.gridViewPac.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPac_RowClick);
-            // 
-            // splitterControl1
-            // 
-            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitterControl1.Location = new System.Drawing.Point(0, 188);
-            this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(527, 12);
-            this.splitterControl1.TabIndex = 6;
-            this.splitterControl1.TabStop = false;
+            this.dockPanel1_Container.Controls.Add(this.treeListPac);
+            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 25);
+            this.dockPanel1_Container.Name = "dockPanel1_Container";
+            this.dockPanel1_Container.Size = new System.Drawing.Size(173, 406);
+            this.dockPanel1_Container.TabIndex = 0;
             // 
             // treeListPac
             // 
             this.treeListPac.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn1});
-            this.treeListPac.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeListPac.Location = new System.Drawing.Point(0, 200);
+            this.treeListPac.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeListPac.Location = new System.Drawing.Point(0, 0);
             this.treeListPac.Name = "treeListPac";
             this.treeListPac.OptionsBehavior.Editable = false;
             this.treeListPac.OptionsBehavior.ReadOnly = true;
@@ -285,7 +297,7 @@
             this.treeListPac.OptionsView.ShowHorzLines = false;
             this.treeListPac.OptionsView.ShowIndicator = false;
             this.treeListPac.OptionsView.ShowVertLines = false;
-            this.treeListPac.Size = new System.Drawing.Size(232, 289);
+            this.treeListPac.Size = new System.Drawing.Size(173, 406);
             this.treeListPac.TabIndex = 7;
             this.treeListPac.Click += new System.EventHandler(this.treeListPac_Click);
             // 
@@ -297,6 +309,28 @@
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 0;
             // 
+            // dockPanel2
+            // 
+            this.dockPanel2.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("dockPanel2.Appearance.Image")));
+            this.dockPanel2.Appearance.Options.UseImage = true;
+            this.dockPanel2.Controls.Add(this.dockPanel2_Container);
+            this.dockPanel2.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
+            this.dockPanel2.ID = new System.Guid("77c49522-f965-4297-8c47-d768578d358b");
+            this.dockPanel2.Image = ((System.Drawing.Image)(resources.GetObject("dockPanel2.Image")));
+            this.dockPanel2.Location = new System.Drawing.Point(0, 339);
+            this.dockPanel2.Name = "dockPanel2";
+            this.dockPanel2.OriginalSize = new System.Drawing.Size(200, 151);
+            this.dockPanel2.Size = new System.Drawing.Size(346, 151);
+            this.dockPanel2.Text = "原始报文";
+            // 
+            // dockPanel2_Container
+            // 
+            this.dockPanel2_Container.Controls.Add(this.hexBoxPac);
+            this.dockPanel2_Container.Location = new System.Drawing.Point(4, 25);
+            this.dockPanel2_Container.Name = "dockPanel2_Container";
+            this.dockPanel2_Container.Size = new System.Drawing.Size(338, 122);
+            this.dockPanel2_Container.TabIndex = 0;
+            // 
             // hexBoxPac
             // 
             this.hexBoxPac.BodyOffset = 0;
@@ -304,41 +338,61 @@
             this.hexBoxPac.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hexBoxPac.HeaderColor = System.Drawing.Color.Maroon;
             this.hexBoxPac.LineInfoVisible = true;
-            this.hexBoxPac.Location = new System.Drawing.Point(232, 200);
+            this.hexBoxPac.Location = new System.Drawing.Point(0, 0);
             this.hexBoxPac.Name = "hexBoxPac";
             this.hexBoxPac.ReadOnly = true;
             this.hexBoxPac.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
             this.hexBoxPac.SelectionLength = ((long)(0));
             this.hexBoxPac.SelectionStart = ((long)(-1));
             this.hexBoxPac.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBoxPac.Size = new System.Drawing.Size(295, 289);
+            this.hexBoxPac.Size = new System.Drawing.Size(338, 122);
             this.hexBoxPac.StringViewVisible = true;
             this.hexBoxPac.TabIndex = 9;
             this.hexBoxPac.UseFixedBytesPerLine = true;
             this.hexBoxPac.VScrollBarVisible = true;
             // 
+            // barBtnLoadAnalysis
+            // 
+            this.barBtnLoadAnalysis.Caption = "载入解析规则";
+            this.barBtnLoadAnalysis.Id = 4;
+            this.barBtnLoadAnalysis.Name = "barBtnLoadAnalysis";
+            // 
+            // gridControlPac
+            // 
+            this.gridControlPac.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlPac.Location = new System.Drawing.Point(0, 55);
+            this.gridControlPac.MainView = this.gridViewPac;
+            this.gridControlPac.MenuManager = this.barManager1;
+            this.gridControlPac.Name = "gridControlPac";
+            this.gridControlPac.Size = new System.Drawing.Size(346, 284);
+            this.gridControlPac.TabIndex = 4;
+            this.gridControlPac.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewPac});
+            // 
+            // gridViewPac
+            // 
+            this.gridViewPac.GridControl = this.gridControlPac;
+            this.gridViewPac.IndicatorWidth = 40;
+            this.gridViewPac.Name = "gridViewPac";
+            this.gridViewPac.OptionsBehavior.Editable = false;
+            this.gridViewPac.OptionsBehavior.ReadOnly = true;
+            this.gridViewPac.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewPac.OptionsView.ShowGroupPanel = false;
+            this.gridViewPac.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPac_RowClick);
+            this.gridViewPac.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPac_CustomDrawRowIndicator);
+            // 
             // defaultLookAndFeel1
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Blue";
-            // 
-            // splitterControl2
-            // 
-            this.splitterControl2.Location = new System.Drawing.Point(232, 200);
-            this.splitterControl2.Name = "splitterControl2";
-            this.splitterControl2.Size = new System.Drawing.Size(12, 289);
-            this.splitterControl2.TabIndex = 14;
-            this.splitterControl2.TabStop = false;
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2010 Blue";
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(527, 511);
-            this.Controls.Add(this.splitterControl2);
-            this.Controls.Add(this.hexBoxPac);
-            this.Controls.Add(this.treeListPac);
-            this.Controls.Add(this.splitterControl1);
             this.Controls.Add(this.gridControlPac);
+            this.Controls.Add(this.dockPanel2);
+            this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -349,9 +403,14 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
+            this.dockPanel1.ResumeLayout(false);
+            this.dockPanel1_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeListPac)).EndInit();
+            this.dockPanel2.ResumeLayout(false);
+            this.dockPanel2_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPac)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPac)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListPac)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,7 +430,6 @@
         private DevExpress.XtraBars.BarButtonItem menuOpen;
         private Be.Windows.Forms.HexBox hexBoxPac;
         private DevExpress.XtraTreeList.TreeList treeListPac;
-        private DevExpress.XtraEditors.SplitterControl splitterControl1;
         private DevExpress.XtraGrid.GridControl gridControlPac;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewPac;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
@@ -384,6 +442,10 @@
         private DevExpress.XtraBars.BarSubItem barSubItem3;
         private DevExpress.XtraBars.BarButtonItem barBtnSetRule;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
-        private DevExpress.XtraEditors.SplitterControl splitterControl2;
+        private DevExpress.XtraBars.Docking.DockManager dockManager1;
+        private DevExpress.XtraBars.Docking.DockPanel dockPanel2;
+        private DevExpress.XtraBars.Docking.ControlContainer dockPanel2_Container;
+        private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
+        private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
     }
 }

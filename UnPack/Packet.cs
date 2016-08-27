@@ -75,6 +75,10 @@ namespace UnPack
                     {
                         mask |= (1 << j);
                     }
+                    if (offset + block.Offset > data.Length)
+                    {
+                        throw new Exception("数据偏移大于数据长度！");
+                    }
                     int val = System.BitConverter.ToInt32(data, offset+block.Offset); 
                   
                     field.Value = (val>>field.Offset) & mask;
