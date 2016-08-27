@@ -19,11 +19,16 @@ namespace RDCHelper
     {
         BindingList<BoundPacket> packetList = new BindingList<BoundPacket>();
         Packet RDCPacket;
+        string _parseFileName;
         public FrmMain()
         {
             InitializeComponent();
             this.gridControlPac.DataSource = packetList;
-            RDCPacket = new Packet(@"E:\Workspace\GitHub\Pcap\PakcetDef.xml");
+            _parseFileName = Application.StartupPath + "Analysis.xml";
+            if (System.IO.File.Exists(_parseFileName))
+            {
+                RDCPacket = new Packet(_parseFileName);
+            }
             gridViewPac.Columns["Tag"].Visible = false;
         }
 
@@ -60,6 +65,11 @@ namespace RDCHelper
 
         private void gridViewPac_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
+            if (RDCPacket == null)
+            {
+                MessageBox.Show("请先载入解析文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             PacapData pac = (PacapData)this.gridViewPac.GetRowCellValue(this.gridViewPac.FocusedRowHandle, this.gridViewPac.Columns["Tag"]);
             int dataLength = pac.Data.Length;
             byte[] array = new byte[dataLength];
@@ -210,8 +220,50 @@ namespace RDCHelper
         #endregion
         private void treeListPac_Click(object sender, EventArgs e)
         {
+            if (treeListPac.FocusedNode == null)
+            {
+                return;
+            }
             PacSelector selector = treeListPac.FocusedNode.Tag as PacSelector;
             hexBoxPac.Select(selector.Offset, selector.Length);
+        }
+
+        /// <summary>
+        /// 打开pcap文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void barBtnOpenPcap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            menuOpen_ItemClick(sender, e); 
+        }
+        /// <summary>
+        /// 载入解析文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void barBtnOpenXml_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            
+            fileDialog.Multiselect = true;
+            fileDialog.Title = "请选择解析文件";
+            fileDialog.Filter = "xml文件(*.xml)|*.xml|所有文件(*.*)|*.*";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = fileDialog.FileName;
+                RDCPacket = new Packet(fileName);
+                System.IO.File.Copy(fileName, _parseFileName);
+            }
+        }
+        private void barBtnSetRule_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            barBtnOpenXml_ItemClick(sender, e);
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
